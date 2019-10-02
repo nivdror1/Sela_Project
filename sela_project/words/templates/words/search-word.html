@@ -1,0 +1,31 @@
+{% extends "words/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Search Results</legend>
+                <table>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Count</th>
+                    </tr>
+                    {% for k,v in data.items %}
+                        {% for file,count in v %}
+                        <tr>
+                            <td>
+                                {{file}}
+                            </td>
+                            <td>
+                                {{count}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </table>
+            </fieldset>
+
+        </form>
+    </div>
+{% endblock content %}
